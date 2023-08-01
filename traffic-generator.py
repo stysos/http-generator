@@ -27,9 +27,7 @@ class Traffic:
                 Ether()
                 / IP(src=self.source_ip, dst=self.destination_ip)
                 / TCP(dport=80, sport=12345)
-                / "GET {} HTTP/1.1\r\nHost: example.com\r\nUser-Agent: {}\r\n\r\n".format(
-            self.url, self.user_agent
-        )
+                / f"GET {self.url} HTTP/1.1\r\nHost: example.com\r\nUser-Agent: {self.user_agent}\r\n\r\n"
         )
         wrpcap(filename=self.source_ip, pkt=http_request)
 class TrafficGenerator:
