@@ -49,7 +49,7 @@ class TrafficGenerator:
     def run(self, iterations):
         for _ in range(iterations):
             self.generate_traffic_item()
-        print(self.traffics)
+        [print(traffic) for traffic in self.traffics]
 
         for traffic in self.traffics:
             traffic.to_pcap()
