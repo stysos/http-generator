@@ -21,15 +21,16 @@ class Traffic:
     content_length: int = field(init=False)
 
     def to_pcap(self):
-        packets = []
 
         http_request = (
                 Ether()
                 / IP(src=self.source_ip, dst=self.destination_ip)
                 / TCP(dport=80, sport=12345)
-                / f"GET {self.url} HTTP/1.1\r\nHost: example.com\r\nUser-Agent: {self.user_agent}\r\n\r\n"
+                / f"GET {self.url} HTTP/1.1\r\nHost: {self.source_ip}\r\nUser-Agent: {self.user_agent}\r\n\r\n"
         )
-        wrpcap(filename=self.source_ip, pkt=http_request)
+        wrpcap(filename=self.source_ip.pcap, pkt=http_request)
+
+
 class TrafficGenerator:
     def __init__(self):
         self.faker = Faker()
