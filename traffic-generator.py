@@ -51,12 +51,12 @@ class TrafficGenerator:
             self.generate_traffic_item()
         [print(traffic) for traffic in self.traffics]
 
-        for traffic in self.traffics:
-            traffic.to_pcap()
+        # for traffic in self.traffics:
+            # traffic.to_pcap()
 
 
 traffic_gen = TrafficGenerator()
-traffic_gen.run(10)
+traffic_gen.run(4524)
 
 
 
